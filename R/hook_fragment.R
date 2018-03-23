@@ -4,13 +4,37 @@
 #' Chunk options \code{fragment_style} and \code{fragment_index} are
 #' passed to 'class' and 'fragment-data-index' in html, respectively.
 #' This function may usually be evaluated in the setup chunk.
-#' 
+#'
 #' @export
 #' @return this function does not return any object.
 #' @examples
 #' \dontrun{
-#' ```{r fragment_style = "fragment fade-up", fragment_index = 3}
-#' } 
+#' <!--start rmarkdown-->
+#' ---
+#' output: revealjs::revealjs_presentation
+#' ---
+#'
+#' ```{r setup}
+#' yose::set_reveal_hooks()
+#' ```
+#'
+#' # Section1
+#'
+#' ## Section1-1
+#'
+#' <div style="position:relative; top:0px; width:800px; height:600px; margin:0 auto;">
+#' ```{r fragment_index = 1, echo = F}
+#' plot(mtcars$mpg, mtcars$disp)
+#' ```
+#' ```{r fragment_style = 'fragment fade-up', fragment_index = 3, echo = F}
+#' plot(mtcars$mpg, mtcars$disp)
+#' text("a", x = 30, y = 400)
+#' ```
+#' </div>
+#' <div class="fragment" data-fragment-index="2">- plot points</div>
+#' <div class="fragment" data-fragment-index="4">- add a comment</div>
+#' <!--end rmarkdown-->
+#' }
 set_reveal_hooks <-
   function(){
     knitr::knit_hooks$set(fragment_style = hook_fragment_style, fragment_index = hook_fragment_index)
@@ -18,12 +42,12 @@ set_reveal_hooks <-
   }
 
 #' Knitr hook for styling the fragment appearance
-#' 
+#'
 #' @description
 #' This hook is used for adding a 'class' tag to a figure.
 #' This hook is usually used along with \code{hook_fragment_index}.
 #' In order to close <div> tag correctly, \code{hook_fragment_style} must be passed before the \code{hook_fragment_index}.
-#' 
+#'
 #' @seealso hook_fragment_index
 hook_fragment_style <-
   function(before, options, envir) {
@@ -35,11 +59,11 @@ hook_fragment_style <-
   }
 
 #' Knitr hook for arranging order of the evaluation of fragments
-#' 
+#'
 #' @description
 #' This hook is used for adding a 'data-fragment-index' tag to a figure.
 #' This hook is usually used along with \code{hook_fragment_style}.
-#' 
+#'
 #' @seealso hook_fragment_style
 hook_fragment_index <-
   function(before, options, envir) {
