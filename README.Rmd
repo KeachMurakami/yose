@@ -57,8 +57,15 @@ Try the following minimal `.rmd`.
 #> <div class="fragment" data-fragment-index="4">- add a comment</div>
 ```
 
+## LICENCE
+
+This package is free and open source software, licensed under GPL.
+
 ## Session information
 
-```{r sessioninfo}
+```{r sessioninfo, echo = F}
+library(knitr)
+library(revealjs)
+library(rmarkdown)
 devtools::session_info()
 ```
