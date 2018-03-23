@@ -1,0 +1,64 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+# yose (寄席)
+
+This package implements incremental figure display in {revealjs} slide.
+`yose` is a Japanese word meaning storytelling [-> Google Images](https://www.google.co.jp/search?q=%E5%AF%84%E5%B8%AD&source=lnms&tbm=isch&sa=X&ved=0ahUKEwix35LSoYHaAhVJlJQKHQKKARYQ_AUICygC&biw=1280&bih=924).
+
+
+## Usage
+
+You can install the latest development version from github with
+
+```{r, eval = F}
+# install.packages("devtools") # if not installed
+devtools::install_github("KeachMurakami/yose")
+```
+
+Try the following minimal `.rmd`.
+
+```{r eval = F}
+#> ---
+#> output: revealjs::revealjs_presentation
+#> ---
+#> 
+#> ```{r setup}
+#> yose::set_reveal_hooks()
+#> ```
+#> 
+#> # Section1
+#> 
+#> ## Section1-1
+#> 
+#> <div style="position:relative; top:0px; width:800px; height:600px; margin:0 auto;">
+#> ```{r fragment_index = 1, echo = F}
+#> plot(mtcars$mpg, mtcars$disp)
+#> ```
+#> ```{r fragment_style = 'fragment fade-up', fragment_index = 3, echo = F}
+#> plot(mtcars$mpg, mtcars$disp)
+#> text("a", x = 30, y = 400)
+#> ```
+#> </div>
+#> <div class="fragment" data-fragment-index="2">- plot points</div>
+#> <div class="fragment" data-fragment-index="4">- add a comment</div>
+```
+
+## Session information
+
+```{r sessioninfo}
+devtools::session_info()
+```
