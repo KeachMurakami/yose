@@ -22,7 +22,7 @@
 #'
 #' p <-
 #'   lapply(2:5, function(x){
-#'     tibble(x = 1:5, y = x * 2, index = 1:5)[1:x, ] %>%
+#'     tibble(x = 1:5, y = x * 2)[1:x, ] %>%
 #'       ggplot(aes(x, y)) +
 #'       geom_point() +
 #'       geom_line() +
