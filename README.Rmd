@@ -31,13 +31,25 @@ devtools::install_github("KeachMurakami/yose")
 
 Try the following minimal `.rmd`.
 
-```{r eval = F}
+```{r}
 #> ---
 #> output: revealjs::revealjs_presentation
 #> ---
 #> 
 #> ```{r setup}
+#> library(knitr)
+#> library(tidyverse)
+#> library(yose)
 #> yose::set_reveal_hooks()
+#> 
+#> p <-
+#>  lapply(2:5, function(x){
+#>    tibble(x = 1:5, y = x * 2)[1:x, ] %>%
+#>      ggplot(aes(x, y)) +
+#>      geom_point() +
+#>      geom_line() +
+#>      lims(x = c(0, 5), y = c(0, 10))
+#>  })
 #> ```
 #> 
 #> # Section1
@@ -48,6 +60,7 @@ Try the following minimal `.rmd`.
 #> ```{r fragment_index = 1, echo = F}
 #> plot(mtcars$mpg, mtcars$disp)
 #> ```
+#> 
 #> ```{r fragment_style = 'fragment fade-up', fragment_index = 3, echo = F}
 #> plot(mtcars$mpg, mtcars$disp)
 #> text("a", x = 30, y = 400)
@@ -55,6 +68,13 @@ Try the following minimal `.rmd`.
 #> </div>
 #> <div class="fragment" data-fragment-index="2">- plot points</div>
 #> <div class="fragment" data-fragment-index="4">- add a comment</div>
+#> 
+#> ## Section1-2
+#> 
+#> demo: `kamishibai`
+#> 
+#> `r yose::kamishibai(p)`
+#> 
 ```
 
 ## LICENCE
