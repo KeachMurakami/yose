@@ -7,38 +7,10 @@
 #'
 #' @export
 #' @return this function does not return any object.
-#' @examples
-#' \dontrun{
-#' <!--start rmarkdown-->
-#' ---
-#' output: revealjs::revealjs_presentation
-#' ---
-#'
-#' ```{r setup}
-#' yose::set_reveal_hooks()
-#' ```
-#'
-#' # Section1
-#'
-#' ## Section1-1
-#'
-#' <div style="position:relative; top:0px; width:800px; height:600px; margin:0 auto;">
-#' ```{r fragment_index = 1, echo = F}
-#' plot(mtcars$mpg, mtcars$disp)
-#' ```
-#' ```{r fragment_style = 'fragment fade-up', fragment_index = 3, echo = F}
-#' plot(mtcars$mpg, mtcars$disp)
-#' text("a", x = 30, y = 400)
-#' ```
-#' </div>
-#' <div class="fragment" data-fragment-index="2">- plot points</div>
-#' <div class="fragment" data-fragment-index="4">- add a comment</div>
-#' <!--end rmarkdown-->
-#' }
 set_reveal_hooks <-
   function(){
     knitr::knit_hooks$set(fragment_style = hook_fragment_style, fragment_index = hook_fragment_index)
-    knitr::opts_chunk$set(fragment_style = "fragment")
+    knitr::opts_chunk$set(fragment_style = "fragment", fragment_index = -1)
   }
 
 #' Knitr hook for styling the fragment appearance
@@ -52,7 +24,9 @@ set_reveal_hooks <-
 hook_fragment_style <-
   function(before, options, envir) {
     if (before) {
-      before_chunk <- paste0("<div class='", options$fragment_style, "' ")
+      before_chunk <- dplyr::if_else(options$fragment_index < 0,
+                                     "<div ",
+                                     paste0("<div class='", options$fragment_style, "' "))
     } else {
       after_chunk <- "</div>"
     }
@@ -68,6 +42,8 @@ hook_fragment_style <-
 hook_fragment_index <-
   function(before, options, envir) {
     if (before) {
-      before_chunk <- paste0("data-fragment-index='", options$fragment_index,"' style='position:absolute;top:0;left:0'>")
+      before_chunk <- dplyr::if_else(options$fragment_index < 0,
+                                     paste0("style='position:absolute;top:0;left:0'>"),
+                                     paste0("data-fragment-index='", options$fragment_index,"' style='position:absolute;top:0;left:0'>"))
     }
   }

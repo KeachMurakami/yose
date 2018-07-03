@@ -14,32 +14,3 @@ Chunk options \code{fragment_style} and \code{fragment_index} are
 passed to 'class' and 'fragment-data-index' in html, respectively.
 This function may usually be evaluated in the setup chunk.
 }
-\examples{
-\dontrun{
-<!--start rmarkdown-->
----
-output: revealjs::revealjs_presentation
----
-
-```{r setup}
-yose::set_reveal_hooks()
-```
-
-# Section1
-
-## Section1-1
-
-<div style="position:relative; top:0px; width:800px; height:600px; margin:0 auto;">
-```{r fragment_index = 1, echo = F}
-plot(mtcars$mpg, mtcars$disp)
-```
-```{r fragment_style = 'fragment fade-up', fragment_index = 3, echo = F}
-plot(mtcars$mpg, mtcars$disp)
-text("a", x = 30, y = 400)
-```
-</div>
-<div class="fragment" data-fragment-index="2">- plot points</div>
-<div class="fragment" data-fragment-index="4">- add a comment</div>
-<!--end rmarkdown-->
-}
-}
