@@ -3,3 +3,4 @@
 export(kamishibai)
 export(set_reveal_hooks)
 export(start_footer)
+export(start_header)

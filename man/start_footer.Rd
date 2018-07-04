@@ -4,7 +4,7 @@
 \alias{start_footer}
 \title{Insert footer field to revealjs slide}
 \usage{
-start_footer(height = "100px", body_heigth = "600px", color = "#555555",
+start_footer(height = "100px", body_offset = "600px", color = "#555555",
   backgroundcolor = "#aaaaaa")
 }
 \value{
@@ -13,5 +13,5 @@ this function returns <div> tag for the footer.
 \description{
 .
 This function is usually used as inline in revealjs_presentation.
-For now, the top end of the footer is controled manually by body_height argument.
+For now, the top end of the footer is controled manually by body_offset argument.
 }
