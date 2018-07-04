@@ -4,7 +4,7 @@
 \alias{add_ribbon}
 \title{Insert horizontal field to revealjs slide (e.g. footer, header)}
 \usage{
-add_ribbon(height = 100, offset = 50, pad = 10, em = 0.5,
+add_ribbon(height = 100, offset = 50, pad = 10, em = 0.8,
   other_list = NULL, ...)
 }
 \value{

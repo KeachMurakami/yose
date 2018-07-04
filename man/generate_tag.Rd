@@ -12,4 +12,5 @@ this function returns chr (class='foo: bar;')
 \description{
 .
 merge css elements to complete html tag.
+this function replaces underscore (_) to hyphen (-) to use handle input easily as inline.
 }
