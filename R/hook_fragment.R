@@ -42,7 +42,7 @@ hook_fragment_style <-
 #' @seealso hook_fragment_style
 hook_fragment_index <-
   function(before, options, envir) {
-    in_reveal_position <- if_else(options$float, "relative", "absolute")
+    in_reveal_position <- if_else(options$float == TRUE, "relative", "absolute")
     if (before) {
       before_chunk <- dplyr::if_else(options$fragment_index < 0,
                                      stringr::str_glue("style='position:{in_reveal_position}; top:0; left:0'>"),
