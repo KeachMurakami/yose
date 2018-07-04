@@ -11,7 +11,7 @@ set_reveal_hooks <-
   function(){
     knitr::knit_hooks$set(fragment_style = hook_fragment_style, fragment_index = hook_fragment_index)
     knitr::opts_chunk$set(fragment_style = "fragment", fragment_index = -1,
-                          echo = FALSE, warning = FALSE, message = FALSE)
+                          echo = FALSE, warning = FALSE, message = FALSE, float = T)
   }
 
 #' Knitr hook for styling the fragment appearance
@@ -42,9 +42,10 @@ hook_fragment_style <-
 #' @seealso hook_fragment_style
 hook_fragment_index <-
   function(before, options, envir) {
+    in_reveal_position <- if_else(options$float, "relative", "absolute")
     if (before) {
       before_chunk <- dplyr::if_else(options$fragment_index < 0,
-                                     paste0("style='position:absolute;top:0;left:0'>"),
-                                     paste0("data-fragment-index='", options$fragment_index,"' style='position:absolute;top:0;left:0'>"))
+                                     stringr::str_glue("style='position:{in_reveal_position}; top:0; left:0'>"),
+                                     stringr::str_glue("data-fragment-index='{options$fragment_index}' style='position:{in_reveal_position}; top:0; left:0'>"))
     }
   }
