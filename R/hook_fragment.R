@@ -10,7 +10,8 @@
 set_reveal_hooks <-
   function(){
     knitr::knit_hooks$set(fragment_style = hook_fragment_style, fragment_index = hook_fragment_index)
-    knitr::opts_chunk$set(fragment_style = "fragment", fragment_index = -1)
+    knitr::opts_chunk$set(fragment_style = "fragment", fragment_index = -1,
+                          echo = FALSE, warning = FALSE, message = FALSE)
   }
 
 #' Knitr hook for styling the fragment appearance
