@@ -19,8 +19,40 @@ p <-
 ```
 
 
+```{r, echo = FALSE, eval = F}
+# to check locally
 
-# Demo
+sources <- dir(path = "R/", full.names = T)
+for(i in seq_along(sources)) source(sources[i])
+```
+
+
+# Demo | header & footer
+
+
+## show horizontal fixed elements
+
+use `add_ribbon`
+
+for header: 
+```
+add_ribbon(height = 100, offset = -50)
+```
+
+for footer:
+```
+add_ribbon(height = 100, offset = 600, color = "#aabbcc", background_color = "#554433")
+```
+
+`r add_ribbon(height = 100, offset = -50)`
+`r icon::fa_th()` Some header text `r icon::fa_th()`
+</div>
+
+`r add_ribbon(height = 100, offset = 600, color = "#aabbcc", background_color = "#554433")`
+`r icon::fa_th()` Some footer text `r icon::fa_th()`
+</div>
+
+# Demo | incremental display
 
 ## default display
 
@@ -45,7 +77,9 @@ p[[3]]
 <div class="fragment" data-fragment-index="2">- plot points</div>
 <div class="fragment" data-fragment-index="4">- add a comment</div>
 
-## incremental display with `kamishibai`
+## incremental display with an one-liner
+
+use `kamishibai`
 
 `r yose::kamishibai(p)`
 
