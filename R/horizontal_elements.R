@@ -8,9 +8,9 @@
 #' @export
 #' @return this function returns <div> tag for the footer.
 add_ribbon <-
-  function(height = 100, offset = 50, pad = 10, em = .5, other_list = NULL, ...){
+  function(height = 100, offset = 50, pad = 10, em = .8, other_list = NULL, ...){
     style = list(position = "absolute", left = "-50%", width = "200%",
-                 top = str_c(offset, "px"), height = str_c(height + offset + pad, "px"), padding = str_c(pad, "px"), `font-size` = str_c(em, "em"), ...)
+                 top = str_c(offset, "px"), height = str_c(height + offset + pad, "px"), padding = str_c(pad, "px"), font_size = str_c(em, "em"), ...)
 
     generate_tag(styles = style, others = other_list, tag = "<div ") %>%
       return()
@@ -54,6 +54,7 @@ parse_other <-
 #'
 #' @description.
 #' merge css elements to complete html tag.
+#' this function replaces underscore (_) to hyphen (-) to use handle input easily as inline.
 #'
 #' @return this function returns chr (class='foo: bar;')
 generate_tag <-
@@ -61,6 +62,7 @@ generate_tag <-
     stringr::str_c(parse_style(styles), parse_other(others), sep = " ") %>%
       stringr::str_trim(side = "both") %>%
       stringr::str_c("<div ", ., ">") %>%
+      stringr::str_replace_all("_", "-") %>%
       htmltools::HTML() %>%
       return()
   }
