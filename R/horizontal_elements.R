@@ -10,7 +10,7 @@
 add_ribbon <-
   function(height = 100, offset = 50, pad = 10, em = .8, other_list = NULL, ...){
     style = list(position = "absolute", left = "-50%", width = "200%",
-                 top = str_c(offset, "px"), height = str_c(height + 2 * pad, "px"), padding = str_c(pad, "px"), font_size = str_c(em, "em"), ...)
+                 top = str_c(offset, "px"), height = str_c(height + pad*2, "px"), padding = str_c(pad, "px"), font_size = str_c(em, "em"), ...)
 
     generate_tag(styles = style, others = other_list, tag = "<div ") %>%
       return()
