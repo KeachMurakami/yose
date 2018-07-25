@@ -4,7 +4,12 @@
 \alias{draw_grid}
 \title{Draw grids in the slide}
 \usage{
-draw_grid()
+draw_grid(eval = TRUE, width = 2)
+}
+\arguments{
+\item{eval}{draw grids or not, default TRUE}
+
+\item{width}{linewidth of grids, default 2}
 }
 \description{
 .
